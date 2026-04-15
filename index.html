@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신축빌라 완판제조기 | 현장실장 실전 가이드</title>
+
+    <!-- 프리미엄 폰트: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #fbbf24;
+            --primary-hover: #f59e0b;
+            --primary-glow: rgba(251, 191, 36, 0.4);
+            --accent: #38bdf8;
+            --danger: #ef4444;
+            --danger-bg: rgba(239, 68, 68, 0.1);
+            --success: #34d399;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, var(--bg-secondary) 0%, var(--bg-color) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, rgba(251, 191, 36, 0.05) 0deg, transparent 60deg, transparent 300deg, rgba(251, 191, 36, 0.05) 360deg);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+            color: #111827;
+            font-weight: 800;
+            font-size: 1.3rem;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px var(--primary-glow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px var(--primary-glow);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .pain-points {
+            background-color: var(--bg-color);
+        }
+
+        .pain-title span {
+            color: var(--danger);
+        }
+
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(239, 68, 68, 0.3);
+            background: rgba(30, 41, 59, 0.7);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: var(--danger);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .quote-box {
+            text-align: center;
+            margin-top: 60px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 30px;
+            border-radius: 16px;
+            background: var(--danger-bg);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+        }
+
+        .solution {
+            background: linear-gradient(180deg, var(--bg-color) 0%, var(--bg-secondary) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .solution .section-title span {
+            color: var(--primary);
+        }
+
+        .benefit-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+        }
+
+        .benefit-icon {
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--success);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .benefit-text h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .inside-box {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .toc-step {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .toc-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .toc-title {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .toc-title span {
+            background: var(--accent);
+            color: #0f172a;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-right: 15px;
+            font-weight: 800;
+        }
+
+        .toc-list {
+            list-style: none;
+            margin-left: 65px;
+        }
+
+        .toc-list li {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .toc-list li::before {
+            content: '•';
+            position: absolute;
+            left: -15px;
+            color: var(--accent);
+        }
+
+        .final-cta {
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(251, 191, 36, 0.1) 0%, var(--bg-color) 70%);
+            padding: 120px 0;
+        }
+
+        .price-box {
+            margin: 50px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .current-price {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .bonus-box {
+            margin-top: 40px;
+            padding: 35px;
+            background: rgba(239, 68, 68, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            position: relative;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bonus-badge {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--danger);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .premium-offer {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.4));
+            border-radius: 24px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            text-align: left;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: -20px;
+            right: 40px;
+            background: var(--accent);
+            color: #0f172a;
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1rem;
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .toc-list {
+                margin-left: 20px;
+            }
+
+            .current-price {
+                font-size: 3rem;
+            }
+
+            .cta-button {
+                padding: 18px 30px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content fade-in-up">
+            <div class="badge">부동산 영업 / 분양 필수 실전 가이드</div>
+            <h1>신축빌라 완판제조기<br>현장실장 실전 가이드</h1>
+            <p class="subtitle">어떤 악성 재고도 완판시키는 에이스 실장들의 1% 영업 비밀<br>그 노하우를 들여다 보고 이번 달 수수료 앞자리를 바꾸세요.</p>
+            <a href="#purchase" class="cta-button">👉 완판의 비밀 훔쳐보기</a>
+        </div>
+    </section>
+
+    <!-- Hook & Pain Points -->
+    <section class="pain-points">
+        <div class="container fade-in-up">
+            <h2 class="section-title pain-title">혹시 현장에서 <span>이런 답답함</span>을<br>느끼고 계신가요?</h2>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon">😕</div>
+                    <h3>브리핑의 한계</h3>
+                    <p style="color: var(--text-muted);">쉴 새 없이 브리핑을 했는데도 계약은 커녕<br>가계약조차 나오지 않아 초조하신가요?</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📉</div>
+                    <h3>자괴감과 비교</h3>
+                    <p style="color: var(--text-muted);">남들은 척척 팔아내는 것 같은데,<br>내 고객만 유독 까다로운 것 같아 자괴감이 드시나요?</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏗️</div>
+                    <h3>현장 핑계</h3>
+                    <p style="color: var(--text-muted);">기껏 배정받은 현장, '입지가 별로다', '비싼 분양가다'며<br>벌써 핑계거리를 찾고 계시진 않나요?</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">✍️</div>
+                    <h3>클로징의 공포</h3>
+                    <p style="color: var(--text-muted);">다 넘어온 고객이 도장 찍기 직전 마음을 바꿀 때,<br>대안 없이 그저 바라만 보고 계신가요?</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "현장은 핑계를 대지 않습니다. 오직 실력만이 결과를 증명할 뿐입니다."
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution & Benefit -->
+    <section class="solution">
+        <div class="container fade-in-up">
+            <h2 class="section-title">오픈만 하면 완판시키는<br>에이스 실장들의 <span>비밀 spans></h2>
+            <p
+                style="text-align: center; color: var(--text-muted); margin-bottom: 50px; font-size: 1.15rem; max-width: 650px; margin-left: auto; margin-right: auto;">
+                아무리 입지가 안 좋고, 구조가 특이하고, 분양가가 비싸더라도...<br>
+                <span style="color: var(--text-main); font-weight: 700;">완판을 만드는 실장들은 다릅니다.</span><br>
+                그들은 ‘단순히 집’을 파는 것이 아니라 <strong><span
+                        style="color: var(--primary); text-shadow: 0 0 15px var(--primary-glow);">‘가치’와
+                        ‘확신’</span></strong>을 팔기 때문입니다.
+            </p>
+
+            <div class="benefit-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">✔</div>
+                    <div class="benefit-text">
+                        <h3>악성 재고의 환골탈태</h3>
+                        <p style="color: var(--text-muted);">최악의 물건도 매력적인 로얄층으로 둔갑시키는 브리핑 스킬을 장착하게 됩니다.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✔</div>
+                    <div class="benefit-text">
+                        <h3>거절의 무력화</h3>
+                        <p style="color: var(--text-muted);">고객의 거절(비싸다, 좁다, 위치가 멀다)을 오히려 계약의 기회로 바꾸는 심리 저항 해제 기법을 배웁니다.
+                        </p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✔</div>
+                    <div class="benefit-text">
+                        <h3>압도적인 현장 장악력</h3>
+                        <p style="color: var(--text-muted);">어떤 현장에 배정받더라도 두려움 없이 즉시 주도권을 쥐고 당장 성과를 냅니다.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">✔</div>
+                    <div class="benefit-text">
+                        <h3>대체 불가능한 에이스</h3>
+                        <p style="color: var(--text-muted);">결국, 업계에서 앞다투어 모셔가는 '완판 보증수표'로 거듭납니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inside Content -->
+    <section>
+        <div class="container fade-in-up">
+            <h2 class="section-title">당신의 현장을 완판으로 이끌<br><span style="color: var(--accent);">절대 비급</span>을 공개합니다</h2>
+
+            <div class="inside-box">
+                <div class="toc-step">
+                    <div class="toc-title"><span>STEP 1</span> 기초 공사 : 흔들림 없는 완판의 뼈대 세우기</div>
+                    <ul class="toc-list">
+                        <li>고객을 사로잡는 완벽한 상품 분석법</li>
+                        <li>첫인상 3초에 결정되는 고객 응대 시나리오</li>
+                    </ul>
+                </div>
+                <div class="toc-step">
+                    <div class="toc-title"><span>STEP 2</span> 실전 브리핑 : 거절을 허락하지 않는 마법의 화법</div>
+                    <ul class="toc-list">
+                        <li>고객의 뇌리에 꽂히는 멘트 설계와 텐션 조절</li>
+                        <li>단점을 장점으로 포장하는 '프레임 전환' 스킬</li>
+                    </ul>
+                </div>
+                <div class="toc-step">
+                    <div class="toc-title"><span>STEP 3</span> 마스터 스킬 : 클로징과 현장 장악</div>
+                    <ul class="toc-list">
+                        <li>망설이는 고객의 펜을 움직이게 하는 타이밍 뺏기</li>
+                        <li>상위 1% 실장들만 몰래 쓴다는 악성 재고 털어내기 비법</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="purchase">
+        <div class="container fade-in-up">
+            <h2 style="font-size: 2.8rem; margin-bottom: 25px;">지금, 당신의 계약률을 수직 상승시킬<br><span
+                    style="color: var(--primary);">골든타임</span>입니다.</h2>
+
+            <!-- Main Product Pricing -->
+            <div class="price-box">
+                <span class="original-price">₩ 330,000</span>
+                <span class="current-price">₩ 165,000</span>
+                <p style="color: var(--text-muted); margin-top: 10px;">높은 수수료에 비하면 낮은 투자금으로 인생을 바꾸세요.</p>
+            </div>
+
+            <!-- Bonus 1 -->
+            <div class="bonus-box">
+                <div class="bonus-badge">기간 한정 혜택 1 🎁</div>
+                <h3 style="color: #fff; font-size: 1.4rem; margin-bottom: 10px;">특정건축물정리에관한특별조치법 해설집</h3>
+                <p style="color: #fca5a5; font-size: 1.05rem;">일정 요건을 갖춘 경우 위반건축물 양성화 가능</p>
+            </div>
+
+            <!-- Premium Bonus 2
+            <div class="premium-offer">
+                <div class="premium-badge">메가 보너스 혜택 2 🔥</div>
+                <h3 style="color: #fff; font-size: 1.8rem; margin-bottom: 15px;">톡 까놓고 말하는 현장실장 속이야기 심화편</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">어디서도 들을 수 없는 현장의 진짜 비밀(리베이트, 수당 구조, 대출 비법, 대기
+                    기술 등 업계 대외비 총망라)</p>
+                <div
+                    style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border: 1px dashed var(--accent);">
+                    <p style="color: var(--accent); font-weight: 700; margin-bottom: 5px;">본 가이드 구매자 전용 특별가</p>
+                    <span style="text-decoration: line-through; color: #666; font-size: 1.1rem; margin-right: 10px;">₩
+                        330,000</span>
+                    <span style="color: #fff; font-size: 1.8rem; font-weight: 800;">₩ 165,000</span>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.95rem; color: #38bdf8;">* [건축 관련 주요 규정 정리 PDF] 패키지 포함</p>
+            </div>
+            -->
+
+            <div style="margin-top: 60px;">
+                <a href="https://drive.google.com/file/d/1smWGh7Hs1PswE7ud2Y-rR8qKzkwjuBG9/view?usp=sharing"
+                    class="cta-button" style="padding: 25px 70px; font-size: 1.6rem;">발췌본 다운로드 & 살펴보기</a>
+                <p style="margin-top: 20px; color: var(--text-muted); font-size: 0.95rem;">구글 드라이브 안전 다운로드 | 결제 후 메일로
+                    전체본 전송
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer
+        style="padding: 50px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); background: #0b1120;">
+        <p style="color: #475569; font-size: 0.9rem;">&copy; 2026 Knowledge Hub. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const elements = document.querySelectorAll('.fade-in-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+            elements.forEach(element => observer.observe(element));
+            setTimeout(() => {
+                document.querySelector('.hero .fade-in-up').classList.add('visible');
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
